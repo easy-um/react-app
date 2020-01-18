@@ -33,7 +33,7 @@ export const withErrorHandler = (WrappedComponent, axiosInstance) => props => {
 	return (
 		<div className={classes.withErrorHandler}>
 			<Modal isShow={error ? true : false} close={cleanError}>
-				{error ? error.message : null}
+				{error ? (error.message ? error.message : 'Request failed') : null}
 			</Modal>
 			<WrappedComponent {...props} />
 		</div>
