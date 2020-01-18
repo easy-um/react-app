@@ -9,6 +9,7 @@ export const About = props => {
 		try {
 			const url = 'https://unclesamrocks.ru/arrowex/dadata/autocomplete'
 			const r = await axiosInstance.post(url, { query: '' })
+			if (!r.data) throw r
 			console.log(r)
 		} catch (error) {
 			console.log('[req][error]', error)
