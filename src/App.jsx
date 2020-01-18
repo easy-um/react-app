@@ -6,8 +6,11 @@ import { About } from './containers/About/About'
 import { Shop } from './containers/Shop/Shop'
 import { Home } from './containers/Home/Home'
 import { NotFound } from './containers/NotFound/NotFound'
+import { withErrorHandler } from './hoc/withErrorHandler/withErrorHandler'
 
 import { ROUTES } from './util/routes'
+
+import { axiosInstance } from './data/axios'
 
 import * as classes from './App.module.scss'
 
@@ -36,4 +39,4 @@ class AppWrap extends Component {
 	}
 }
 
-export const App = withRouter(AppWrap)
+export const App = withRouter(withErrorHandler(AppWrap, axiosInstance))
