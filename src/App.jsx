@@ -6,7 +6,9 @@ import { About } from './containers/About/About'
 import { Shop } from './containers/Shop/Shop'
 import { Home } from './containers/Home/Home'
 import { NotFound } from './containers/NotFound/NotFound'
+
 import { withErrorHandler } from './hoc/withErrorHandler/withErrorHandler'
+import { transitionGroup } from './hoc/transitionGroup/transitionGroup'
 
 import { ROUTES } from './util/routes'
 
@@ -39,4 +41,4 @@ class AppWrap extends Component {
 	}
 }
 
-export const App = withRouter(withErrorHandler(AppWrap, axiosInstance))
+export const App = withRouter(transitionGroup(withErrorHandler(AppWrap, axiosInstance)))
