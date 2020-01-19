@@ -6,9 +6,8 @@ const axiosInstance = axios.create({
 	// baseURL: ...
 })
 
-let token = localStorage.getItem('token')
-
 const updateAxiosToken = () => {
+	let token = localStorage.getItem('token')
 	if (isJWT(token)) {
 		axiosInstance.defaults.headers.common['Authorization'] = 'Bearer ' + token
 	} else {
