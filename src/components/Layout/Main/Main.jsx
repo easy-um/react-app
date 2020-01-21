@@ -1,7 +1,17 @@
-import React from 'react'
+import React, { Component } from 'react';
 
-import * as classes from './Main.module.scss'
+import Header from '../header'
 
-export const Main = props => {
-	return <main className={classes.Main}>{props.children}</main>
+export class MainLayout extends Component {
+
+    render() {
+        return (
+            <div style={{ width: '100%', height: '100%' }}>
+                <Header {...this.props} />
+                <div style={{ padding: '20px' }}>
+                    {this.props.children}
+                </div>
+            </div>
+        )
+    }
 }
