@@ -1,14 +1,14 @@
-import React from 'react';
+import React from 'react'
 
-import Nav from './nav';
-import * as classes from "./header.module.scss";
+import Nav from './Nav/nav'
+import * as classes from './Header.module.scss'
 
-const Header = (props) => {
-  return (
-    <header className={classes.Header}>
-      <Nav {...props} />
-    </header>
-  );
-};
+const Header = props => {
+	return (
+		<header className={classes.Header}>
+			<Nav {...props} />
+		</header>
+	)
+}
 
-export default Header;
+export default Header

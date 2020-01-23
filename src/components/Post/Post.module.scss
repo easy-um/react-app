@@ -1,20 +1,48 @@
-.Post{
-    margin: 5px;
-    border: 1px solid darkgray;
-    border-radius: 5px;
-    padding: 10px;
-    width: 100%;
+.Post {
+	margin: 5px;
+	border: 1px solid darkgray;
+	border-radius: 5px;
+	padding: 10px;
+	width: 100%;
 
-    .title{
-        font-weight: bold;
-        margin-bottom: 10px;
-        text-align: center;
-    }
+	position: relative;
 
-    .author {
-        font-size: 0.8rem;
-        font-style: italic;
-        margin-top: 10px;
-        margin-bottom: 5px;
-    }
+	.closeButton {
+		$d: 20px;
+		position: absolute;
+		width: $d;
+		height: $d;
+		color: black;
+		top: calc(0% + #{$d / 2});
+		right: calc(0% + #{$d});
+		cursor: pointer;
+
+		.row {
+			position: absolute;
+			height: 1px;
+			width: 100%;
+			top: calc(50% - 1px);
+			background-color: black;
+
+			&:first-child {
+				transform: rotate(45deg);
+			}
+			&:last-child {
+				transform: rotate(-45deg);
+			}
+		}
+	}
+
+	.title {
+		font-weight: bold;
+		margin-bottom: 10px;
+		text-align: center;
+	}
+
+	.author {
+		font-size: 0.8rem;
+		font-style: italic;
+		margin-top: 10px;
+		margin-bottom: 5px;
+	}
 }

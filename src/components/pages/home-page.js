@@ -1,8 +1,8 @@
-import React from "react";
-import Header from "../layout/header";
+import React from 'react'
+import Header from '../Layout/Header/header'
 
 const HomePage = () => {
-  return <Header />;
-};
+	return <Header />
+}
 
-export default HomePage;
+export default HomePage
