@@ -9,7 +9,7 @@ import { MainLayout } from '../Layout/Main/Main'
 
 import { URL } from '../../data/urls'
 
-export default class App extends Component {
+class AppWrap extends Component {
 	maxIdUser = 1
 	maxIdProduct = 1
 
@@ -72,17 +72,15 @@ export default class App extends Component {
 	}
 
 	render() {
-		const { isLoggedIn, isAdmin } = this.state
-
 		return (
-			<MainLayout isLoggedIn={isLoggedIn} isAdmin={isAdmin} onLogout={() => this.setState({ isAdmin: false, isLoggedIn: false })}>
+			<MainLayout>
 				<Switch>
 					<Route path={URL.HOME} exact>
 						<MainPage />
 					</Route>
 
 					<Route path={URL.LOGIN} exact>
-						<LoginPage isLoggedIn={isLoggedIn} onLogin={this.onLogin} />
+						<LoginPage />
 					</Route>
 
 					<Route path={URL.SIGNUP} exact>
@@ -101,3 +99,7 @@ export default class App extends Component {
 		)
 	}
 }
+
+const App = AppWrap
+
+export default App
