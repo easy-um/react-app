@@ -10,7 +10,6 @@ import { URL } from '../../data/urls'
 
 class LoginPage extends Component {
 	state = {
-		isLoading: false,
 		email: '',
 		password: '',
 		rules: {
@@ -52,20 +51,18 @@ class LoginPage extends Component {
 		const isPasswordValid = validateString(this.state.password, this.state.rules.password)
 		if (!isEmailValid || !isPasswordValid) return
 		// credentials check
-		this.setState({ isLoading: true }, () => {
-			this.props.onHandleLogin(this.state.email, this.state.password)
-		})
+		this.props.onHandleLogin(this.state.email, this.state.password)
 	}
 
 	render() {
-		const { isLoggedIn } = this.props
+		const { isLoggedIn, isLoading } = this.props
 		const { email, password } = this.state
 
 		if (isLoggedIn) {
 			return <Redirect to="/" />
 		}
 
-		if (this.state.isLoading) return <div>Loading...</div>
+		if (isLoading) return <div>Loading...</div>
 
 		return (
 			<div>
@@ -100,7 +97,8 @@ class LoginPage extends Component {
 }
 
 const mapStateToProps = ({ auth }) => ({
-	isLoggedIn: auth.isLoggedIn
+	isLoggedIn: auth.isLoggedIn,
+	isLoading: auth.isLoading
 })
 
 const mapDispatchToProps = dispatch => ({

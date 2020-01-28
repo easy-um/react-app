@@ -2,7 +2,9 @@ import React, { Component, Fragment } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 
-// import * as classes from "./nav.module.scss";
+import {logout } from '../../../../redux/actions/auth'
+
+// import * as classes from "./Nav.module.scss";
 
 class Nav extends Component {
 	render() {
@@ -66,4 +68,8 @@ const mapStateToProps = ({ auth }) => ({
 	isAdmin: auth.isAdmin
 })
 
-export default connect(mapStateToProps, null)(Nav)
+const mapDispatchToProps = dispatch => ({
+	onLogout: () => dispatch(logout())
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Nav)

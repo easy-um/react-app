@@ -1,6 +1,7 @@
 import { ACTION_TYPES as AT } from '../actionTypes'
 
 const initialState = {
+	isLoading: false,
 	isLoggedIn: false,
 	isAdmin: false
 }
@@ -12,6 +13,10 @@ const reducer = (state = initialState, action) => {
 			return { ...state, ...payload }
 		case AT.AUTH_LOGOUT:
 			return { ...state, ...payload }
+		case AT.AUTH_START:
+			return { ...state, isLoading: true }
+		case AT.AUTH_FINISH:
+			return { ...state, ...payload, isLoading: false }
 		default:
 			return state
 	}

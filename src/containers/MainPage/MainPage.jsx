@@ -9,7 +9,7 @@ import * as classes from './MainPage.module.scss'
 
 class MainPageWrap extends Component {
 	componentDidMount() {
-		console.log('[componentDidMount]', this.props)
+		// console.log('[componentDidMount]', this.props)
 		if (!this.props.posts.length) {
 			fetch('https://jsonplaceholder.typicode.com/posts')
 				.then(response => response.json())
@@ -20,9 +20,9 @@ class MainPageWrap extends Component {
 		}
 	}
 
-	componentDidUpdate() {
-		console.log('[componentDidUpdate]', this.props)
-	}
+	// componentDidUpdate() {
+	// 	console.log('[componentDidUpdate]', this.props)
+	// }
 
 	handleClickPostRemove(id) {
 		fetch('https://jsonplaceholder.typicode.com/posts/' + id, { method: 'DELETE' }).then(res => {

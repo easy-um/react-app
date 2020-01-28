@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Route, Switch } from 'react-router-dom'
 
-import { LoginPage, SignupPage, AddProductPage } from '../pages'
+import { LoginPage, SignupPage, AddProductPage } from '../Pages/index'
 import { MainPage } from '../../containers/MainPage/MainPage'
 import { PostPage } from '../../containers/PostPage/PostPage'
 
