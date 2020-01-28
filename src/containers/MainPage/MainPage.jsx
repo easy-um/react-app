@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
+import { axiosInstance } from '../../axios/axios'
+
 import { Post } from '../../components/Post/Post'
 
 import { updatePosts, deletePost } from '../../redux/actions/posts'

@@ -4,5 +4,6 @@ export const URL = {
 	SIGNUP: '/signup',
 	ADD_PRODUCT: '/addProduct',
 	POST: '/post/:postId',
-	POST_WO_ID: '/post/'
+	POST_WO_ID: '/post/',
+	PRODUCTS: '/products'
 }

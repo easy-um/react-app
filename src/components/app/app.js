@@ -4,6 +4,7 @@ import { Route, Switch } from 'react-router-dom'
 import { LoginPage, SignupPage, AddProductPage } from '../Pages/index'
 import { MainPage } from '../../containers/MainPage/MainPage'
 import { PostPage } from '../../containers/PostPage/PostPage'
+import {ProductPage } from '../../containers/ProductPage/ProductPage'
 
 import { MainLayout } from '../Layout/Main/Main'
 
@@ -94,6 +95,11 @@ class AppWrap extends Component {
 					<Route path={URL.POST} exact>
 						<PostPage />
 					</Route>
+
+					<Route path={URL.PRODUCTS}>
+						<ProductPage />
+					</Route>
+
 				</Switch>
 			</MainLayout>
 		)

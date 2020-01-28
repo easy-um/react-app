@@ -1,6 +1,6 @@
 import { ACTION_TYPES as AT } from '../actionTypes'
 
-const logUserIn = () => ({ type: AT.AUTH_LOGIN, payload: { isLoggedIn: true, isAdmin: false } })
+const logUserIn = () => ({ type: AT.AUTH_LOGIN, payload: { isLoggedIn: true, isAdmin: true } })
 
 export const logout = () => ({ type: AT.AUTH_LOGOUT, payload: { isLoggedIn: false, isAdmin: false } })
 
@@ -20,7 +20,7 @@ export const onHandleLogin = (login, password) => thunk => {
 			thunk(logUserIn())
 		}
 		thunk(authFinish())
-	}, 3000)
+	}, 1000)
 }
 
 

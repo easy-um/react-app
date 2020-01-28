@@ -2,7 +2,9 @@ import React, { Component, Fragment } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 
-import {logout } from '../../../../redux/actions/auth'
+import { logout } from '../../../../redux/actions/auth'
+
+import { URL} from '../../../../data/urls'
 
 // import * as classes from "./Nav.module.scss";
 
@@ -14,7 +16,10 @@ class Nav extends Component {
 			return (
 				<Fragment>
 					<li>
-						<Link to="/addProduct">Add Product</Link>
+						<Link to={URL.ADD_PRODUCT}>Add Product</Link>
+					</li>
+					<li>
+						<Link to={URL.PRODUCTS}>Products</Link>
 					</li>
 				</Fragment>
 			)
@@ -24,8 +29,8 @@ class Nav extends Component {
 			return (
 				<Fragment>
 					<li>
-						<Link to="/" onClick={this.props.onLogout}>
-							logout
+						<Link to={URL.HOME} onClick={this.props.onLogout}>
+							Logout
 						</Link>
 					</li>
 				</Fragment>
@@ -35,10 +40,10 @@ class Nav extends Component {
 		const renderIsLoggedOut = (
 			<Fragment>
 				<li>
-					<Link to="/login">Login</Link>
+					<Link to={URL.LOGIN}>Login</Link>
 				</li>
 				<li>
-					<Link to="/signup">Registaration</Link>
+					<Link to={URL.SIGNUP}>Registaration</Link>
 				</li>
 			</Fragment>
 		)

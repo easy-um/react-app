@@ -1,0 +1,28 @@
+.ProductPage{
+
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-wrap: wrap;
+
+    .item {
+
+        border: 1px solid black;
+        border-radius: 2px;
+        margin: 20px;
+
+        .title {
+            text-align: center;
+            text-transform: uppercase;
+            margin: 15px;
+            border-bottom: 1px solid black;
+        }
+
+        .price {
+            text-align: right;
+            font-style: italic;
+            font-size: 12px;
+            margin: 15px;
+        }
+    }
+}

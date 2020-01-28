@@ -1,10 +1,12 @@
 import React, { Component } from "react";
 
+import { axiosInstance } from '../../axios/axios'
+
 class AddProductPage extends Component {
 
   state = {
     title: "",
-    price: ""
+    price: "",
   };
 
   onTitleChange = (event) => {
@@ -14,18 +16,25 @@ class AddProductPage extends Component {
   }
 
   onPriceChange = (event) => {
+    const value = event.target.value
+    const cleanValue = parseInt(value)
     this.setState({
-      price: event.target.value
+      price: isNaN(cleanValue) ? '' : cleanValue
     });
   }
 
-  handleSubmit = (event) => {
+  handleSubmit = async (event) => {
     event.preventDefault();
-    this.props.onAddProduct(this.state.title, this.state.price);
-    this.setState({
-      title: "",
-      price: ""
-    });
+    try {
+      const responce = await axiosInstance.post('products.json', {
+        title: this.state.title,
+        price: this.state.price
+      })
+      console.log('[addProduct][responce]', responce)
+      this.setState({title: '', price: ''})
+    } catch (err) {
+      console.log(err)
+    }
   }
 
   render() {
@@ -60,6 +69,10 @@ class AddProductPage extends Component {
               value={price}
               onChange={this.onPriceChange}
             ></input>
+          </div>
+
+          <div className="form-group">
+            <button className="btn btn-success">Send</button>
           </div>
         </form>
       </div>
