@@ -10,6 +10,9 @@ import { MainLayout } from '../Layout/Main/Main'
 
 import { URL } from '../../data/urls'
 
+import { withAxiosError } from '../../hoc/withAxiosError'
+import {axiosInstance } from '../../axios/axios'
+
 class AppWrap extends Component {
 	maxIdUser = 1
 	maxIdProduct = 1
@@ -106,6 +109,6 @@ class AppWrap extends Component {
 	}
 }
 
-const App = AppWrap
+const App = withAxiosError(AppWrap, axiosInstance)
 
 export default App
