@@ -1,78 +1,24 @@
 import React, { Component } from 'react'
 import { Route, Switch } from 'react-router-dom'
+import { connect } from 'react-redux'
 
-import { LoginPage, SignupPage, AddProductPage } from '../Pages/index'
+import { LoginPage, SignupPage, AddProductPage } from '../pages'
 import { MainPage } from '../../containers/MainPage/MainPage'
 import { PostPage } from '../../containers/PostPage/PostPage'
-import {ProductPage } from '../../containers/ProductPage/ProductPage'
+import { ProductPage } from '../../containers/ProductPage/ProductPage'
 
 import { MainLayout } from '../Layout/Main/Main'
 
 import { URL } from '../../data/urls'
 
 import { withAxiosError } from '../../hoc/withAxiosError'
-import {axiosInstance } from '../../axios/axios'
+import { axiosInstance } from '../../axios/axios'
+
+import { autoUserAuthentication } from '../../redux/actions/auth'
 
 class AppWrap extends Component {
-	maxIdUser = 1
-	maxIdProduct = 1
-
-	state = {
-		isLoggedIn: false,
-		isAdmin: false,
-		usersData: [{ email: 'admin', password: 'admin', id: 1 }],
-		productsData: [],
-		adminCredentials: {
-			email: 'admin',
-			password: '123'
-		}
-	}
-
-	funcUser(email, password) {
-		return {
-			email,
-			password,
-			id: this.maxIdUser++
-		}
-	}
-
-	funcProduct(title, price) {
-		return {
-			title,
-			price,
-			id: this.maxIdProduct++
-		}
-	}
-
-	onLogin = (email, password) => {
-		// lets check admin creds
-		if (email === this.state.adminCredentials.email && password === this.state.adminCredentials.password) {
-			this.setState({ isAdmin: true, isLoggedIn: true })
-		}
-	}
-
-	onSignUp = (email, password) => {
-		const newUser = this.funcUser(email, password)
-
-		this.setState(({ usersData }) => {
-			const newArr = [...usersData, newUser]
-
-			return {
-				usersData: newArr
-			}
-		})
-	}
-
-	onAddProduct = (title, price) => {
-		const newProduct = this.funcProduct(title, price)
-
-		this.setState(({ productsData }) => {
-			const newArr = [...productsData, newProduct]
-
-			return {
-				productsData: newArr
-			}
-		})
+	componentDidMount() {
+		this.props.autoUserAuthentication()
 	}
 
 	render() {
@@ -88,11 +34,11 @@ class AppWrap extends Component {
 					</Route>
 
 					<Route path={URL.SIGNUP} exact>
-						<SignupPage onSignUp={this.onSignUp.bind(this)} />
+						<SignupPage />
 					</Route>
 
 					<Route path={URL.ADD_PRODUCT} exact>
-						<AddProductPage onAddProduct={this.onAddProduct} />
+						<AddProductPage />
 					</Route>
 
 					<Route path={URL.POST} exact>
@@ -102,13 +48,16 @@ class AppWrap extends Component {
 					<Route path={URL.PRODUCTS}>
 						<ProductPage />
 					</Route>
-
 				</Switch>
 			</MainLayout>
 		)
 	}
 }
 
-const App = withAxiosError(AppWrap, axiosInstance)
+const mapDispatchToProps = dispatch => ({
+	autoUserAuthentication: () => dispatch(autoUserAuthentication())
+})
+
+const App = connect(null, mapDispatchToProps)(withAxiosError(AppWrap, axiosInstance))
 
 export default App

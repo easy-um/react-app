@@ -54,18 +54,19 @@ class LoginPage extends Component {
 		this.props.onHandleLogin(this.state.email, this.state.password)
 	}
 
+	renderError = () => <div className="alert alert-danger">{this.props.error.message}</div>
+
 	render() {
-		const { isLoggedIn, isLoading } = this.props
+		const { isLoggedIn, isLoading, error } = this.props
 		const { email, password } = this.state
 
-		if (isLoggedIn) {
-			return <Redirect to="/" />
-		}
+		if (isLoggedIn) return <Redirect to="/" />
 
 		if (isLoading) return <div>Loading...</div>
 
 		return (
 			<div>
+				{error ? this.renderError() : null}
 				<form onSubmit={this.handleSubmit}>
 					<h2>Login Page</h2>
 
@@ -98,7 +99,8 @@ class LoginPage extends Component {
 
 const mapStateToProps = ({ auth }) => ({
 	isLoggedIn: auth.isLoggedIn,
-	isLoading: auth.isLoading
+	isLoading: auth.isLoading,
+	error: auth.error
 })
 
 const mapDispatchToProps = dispatch => ({
