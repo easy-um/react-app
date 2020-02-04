@@ -29,6 +29,7 @@ export const logout = () => {
 export const onHandleLogin = (email, password) => dispatch => {
 	const url = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=' + API_KEY
 	dispatch(authStart())
+	dispatch(cleanError())
 	// request handle
 	axios
 		.post(url, {

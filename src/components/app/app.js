@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Route, Switch } from 'react-router-dom'
 import { connect } from 'react-redux'
 
-import { LoginPage, SignupPage, AddProductPage } from '../pages'
+import { LoginPage, SignupPage, AddProductPage } from '../Pages'
 import { MainPage } from '../../containers/MainPage/MainPage'
 import { PostPage } from '../../containers/PostPage/PostPage'
 import { ProductPage } from '../../containers/ProductPage/ProductPage'

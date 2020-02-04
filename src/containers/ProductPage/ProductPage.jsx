@@ -1,9 +1,19 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, Fragment } from 'react'
 import { connect } from 'react-redux'
+import { TransitionGroup, CSSTransition } from 'react-transition-group'
 
 import * as classes from './ProductPage.module.scss'
 
 import { axiosInstance } from '../../axios/axios'
+
+console.log(classes)
+
+const animClasses = {
+	enter: classes['item-enter'],
+	enterActive: classes['item-enter-active'],
+	exit: classes['item-exit'],
+	exitActive: classes['item-exit-active']
+}
 
 export const ProductPageWrap = ({ userId }) => {
 	const [prods, setProds] = useState([])
@@ -21,14 +31,21 @@ export const ProductPageWrap = ({ userId }) => {
 	}, [])
 
 	const renderProds = () =>
-		prods.map(item => (
-			<div key={item.id} className={classes.item}>
-				<div className={classes.title}>{item.title}</div>
-				<div className={classes.price}>{item.price}</div>
-			</div>
-		))
+		(<TransitionGroup className={classes.itemWrap}>
+			{prods.map(item => (
+				<CSSTransition key={item.id} timeout={Math.random() * 2000} classNames={animClasses}>
+					<div className={classes.item}>
+						<div className={classes.title}>{item.title}</div>
+						<div>
+							<img src={item.img} alt={item.title} className='img-thumbnail' />
+						</div>
+						<div className={classes.price}>{item.price}</div>
+					</div>
+				</CSSTransition>
+			))}
+		</TransitionGroup>)
 
-	return <div className={classes.ProductPage}>{prods.length ? renderProds() : 'No products was found!'}</div>
+	return <div className={classes.ProductPage}>{renderProds()}</div>
 }
 
 const mapState = ({ auth }) => ({

@@ -9,5 +9,23 @@
     left: 15%;
     top: 30%;
     box-sizing: border-box;
-    transition: all 300ms ease-out;
+
+    &_enter{
+        transform: translateY(-100vh);
+    }
+
+    &_enter_active{
+        transform: translateY(0vh);
+        transition: transform 300ms ease-out;
+    }
+
+    &_exit{
+        transform: translateY(0vh);
+    }
+
+    &_exit_active{
+        transform: translateY(100vh);
+        transition: transform 300ms ease-out;
+    }
+
 }

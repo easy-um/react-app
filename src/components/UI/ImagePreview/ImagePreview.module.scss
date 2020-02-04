@@ -1,0 +1,22 @@
+.ImagePreview {
+    
+
+    &_enter {
+        transform: scale(0);
+    }
+
+    &_enter_active{
+        transform: scale(1);
+        transition: transform 300ms ease-out;
+    }
+
+    &_exit {
+       transform: scale(1);
+    }
+
+    &_exit_active{
+        transform: scale(0);
+        transition: transform 300ms ease-in;
+    }
+
+}
