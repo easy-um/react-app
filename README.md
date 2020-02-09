@@ -1,5 +1,7 @@
 ## React e-com project
 
+## upd readme file new version
+
 ### Библиотеки:
 
 - axios
